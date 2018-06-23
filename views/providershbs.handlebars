@@ -1,0 +1,68 @@
+
+<div style ="padding-bottom: 100px"></div>
+<div class="container">
+{{!-- <form method="POST" action="/package/create"> --}}
+        <div class="row" id="providers-row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div>
+                    <br>
+                    <div>
+                    <p>Display by budget:  
+                        <a href="/vendors/low"><button class="btn btn-default">Low</button></a>
+                        <a href="/vendors/medium"><button class="btn btn-default">Medium</button></a>
+                        <a href="/vendors/high"><button class="btn btn-default">High</button></a>
+                        <a href="/vendors"><button class="btn btn-default">All</button></a></span></p>
+                    </div>
+                <form method="POST" action="/package/create">
+                                
+
+                <div class="well well-lg">
+                    <div class="row">
+                        <h1 h1 style="text-align: center">kitchens</h1><br>
+                        {{#each vendor}} {{#if_eq this.type 'kitchens'}}
+                         <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="{{this.img}}" alt="{{this.img}}" 
+                                <div class="caption">
+                                    <h3 style="text-align: center">{{this.name}}</h3>
+                                    <h4 style="text-align: center">{{this.address}}</h4>
+                                    <h4>{{this.description}}</h4>
+                                    <h3 style="text-align: center">Price: {{this.price}}</h3>
+                                    <h4 style="text-align: center">{{this.capacity}}</h4>
+                                    <br>
+                                <center>
+                                    <input type="radio" name="kitchens" value="{{this.id}}" style="height:25px; width:25px; vertical-align: middle;">
+                                    <p style="font-size: 8px; text-align: center;"><i>click to choose this kitchen</i></p>
+                            </div>
+                        </div>
+                        {{/if_eq}} {{/each}}
+                    </div>
+                </div>
+
+                <div class="well well-lg">
+                    <div class="row">
+                        <h1 style="text-align: center">doors</h1><br>
+                        {{#each vendor}} {{#if_eq this.type 'door'}}
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="{{this.img}}" alt="{{this.img}}"
+                                <div class="caption">
+                                    <h3 style="text-align: center">{{this.name}}</h3>
+                                    <h4>{{this.description}}</h4>
+                                    <h3 style="text-align: center">Price: {{this.price}}</h3>
+                                    <h4 style="text-align: center">{{this.capacity}}</h4>
+                                <center>
+                                    <input type="radio" name="door" value="{{this.id}}" style="height:25px; width:25px; vertical-align: middle;">
+                                    <p style="font-size: 8px; text-align: center;"><i>click to choose this door</i></p>
+                            </div>
+                        </div>
+                        {{/if_eq}} {{/each}}
+                    </div>
+                </div>
+                <input id="providerSubmit" type="submit">
+    </form>
+    </div>
+    <div class="col-sm-1"></div>
+    </div>
+    </div>

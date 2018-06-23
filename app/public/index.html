@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Resource style -->
+    <link rel="stylesheet" href="css/index.css">
+    <!-- Resource style -->
+    <script src="js/modernizr.js"></script>
+    <!-- Modernizr -->
+    <title>Interior App</title>
+    
+    <title>Interior package</title>
+</head>
+<body>
+    <header class="cd-header">
+        <div id="cd-logo"><a href="#0"><img src="assets/images/logo.png" alt="Logo"></a></div>
+        <nav class="cd-primary-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#" onclick="document.getElementById('signup').style.display='block'" style="width:auto;">Sign Up</a>
+                   <!-- <a href="#0">Sign Up</a> -->
+                </li>
+                <li><a href="#" onclick="document.getElementById('signin').style.display='block'" style="width:auto;">Sign In</a>
+					<!-- <a href="#0">Sign In</a> -->
+                </li>
+                </li>
+			</ul>
+		</nav> <!-- .cd-primary-nav -->
+	</header>
+
+	
+
+	<section class="cd-hero">
+		<ul class="cd-hero-slider autoplay">
+			
+
+			<li class="cd-bg-video selected">
+				<div class="cd-full-width selected">
+				<h2 style = "color: #66c9dd; font-size: 48px; padding-top: 100px; ">Dream, Plan, Execute, <br>Celebrate!</h2>
+					<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, explicabo.</p> -->
+                    <!-- <a href="#0" class="cd-btn">Learn more</a> -->
+				</div> <!-- .cd-full-width -->
+				</div>
+
+				<div class="cd-bg-video-wrapper" data-video="assets/video/video1">
+					<!-- video element will be loaded using jQuery -->
+				</div> <!-- .cd-bg-video-wrapper -->
+            </li>
+            <li class="cd-bg-video">
+				<div class="cd-full-width">
+					<h2 style = "color: #66c9dd; font-size: 48px; padding-top: 100px; ">Dream, Plan, Execute, <br>Celebrate!</h2>
+				</div> <!-- .cd-full-width -->
+
+				<div class="cd-bg-video-wrapper" data-video="assets/video/video2">
+					<!-- video element will be loaded using jQuery -->
+				</div> <!-- .cd-bg-video-wrapper -->
+            </li>
+            <li class="cd-bg-video">
+                <div class="cd-full-width">
+                    <h2 style="color: #66c9dd; font-size: 52px; padding-top: 120px; ">Dream, Plan, Execute, <br>Celebrate!</h2>
+                </div>
+                <!-- .cd-full-width -->
+                <div class="cd-bg-video-wrapper" data-video="assets/video/video3">
+                    <!-- video element will be loaded using jQuery -->
+                </div>
+                <!-- .cd-bg-video-wrapper -->
+            </li>
+           
+        </ul>
+        <!-- .cd-hero-slider -->
+    </section>
+    <!-- .cd-hero -->
+    <div id="signin" class="modal">
+        <span onclick="document.getElementById('signin').style.display='none'" class="close" title="Close Modal">×</span>
+        <form class="modal-content animate" method="post" action="/signin">
+            <div class="container">
+                <label><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <input type="checkbox" checked="checked"> Remember me
+                <p>By signing in you agree to our <a href="#">Terms & Privacy</a>.</p>
+                <div class="clearfix">
+                    <button type="submit" class="signupbtn">Sign In</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="signup" class="modal">
+        <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">×</span>
+        <form class="modal-content animate" method="post" action="/signup">
+            <div class="container">
+                <label for="firstname"><b>Firstname</b></label>
+                <input name="firstname" type="text" />
+                <label for="lastname"><b>Lastname</b></label>
+                <input name="lastname" type="text" />
+                <label><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <input type="checkbox" checked="checked"> Remember me
+                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                <div class="clearfix">
+                    <button type="submit" class="signupbtn">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div id="about-us">
+        <main class="cd-main-content">
+            <p>
+                Interior Products planner.
+            </p>
+            <p align="justify">
+                Our Interior Product panner is a simple app to help you plan your customized Interior needs.  </p>
+        </main>
+        <!-- .cd-main-content -->
+    </div>
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Resource jQuery -->
+</body>
+</html>
