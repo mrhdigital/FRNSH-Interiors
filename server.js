@@ -10,7 +10,7 @@ var express = require("express"),
 
 var db = require("./app/models");
 
-// app.set('views', './app/views');
+app.set('views', './app/views');
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
@@ -22,6 +22,7 @@ app.use(bodyParser.json({type:"application/vnd.api+json"}));
 app.use(methodOverride('_method'));
 
 app.use(express.static("./app/public"));
+app.use("/public", express.static("./app/public"));
 
  // For Passport
  app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); 
