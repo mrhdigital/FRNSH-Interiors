@@ -10,7 +10,7 @@ var express = require("express"),
 
 var db = require("./app/models");
 
-app.set('views', './app/views');
+app.set('views', './views');
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
