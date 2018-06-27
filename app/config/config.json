@@ -1,23 +1,19 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "password",
     "database": "providers_db",
-    "host": "8889",
-    "dialect": "mysql",
-    "dialectOptions": {
-      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
-    }
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+    
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": "password",
     "database": "providers_db",
-    "host": "8889",
-    "dialect": "mysql",
-    "dialectOptions": {
-      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
-    }
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+    
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
