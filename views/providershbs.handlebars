@@ -42,9 +42,29 @@
 
 
         <div class="row">
+
+            {{#each products}}
+                {{#if this.image}}
+                    <div class="col-md-4 col-sm-12 text-center">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">${{this.price}}</h5>
+                                <p class="card-text">{{this.name}}</p>
+                                <div class="form-check form-check-inline">
+                                    <input type="button" data-name="{{this.name}}" class="btn-large btn-success">
+                                    <label class="form-check-label">click to choose this item</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+
+
             {{!--
             <div class="col-4"> --}}
-                <br> {{#each vendor}} {{#if_eq this.type 'door'}}
+                {{!-- <br> {{#each vendor}} {{#if_eq this.type 'door'}}
                 <div class="col-4">
                     <center>
                         <img src="{{this.img}}" alt="{{this.img}}" class="caption">
@@ -62,7 +82,8 @@
                         </div>
                     </div>
                 </div>
-                {{/if_eq}} {{/each}} {{!-- </div> --}} {{!--
+                {{/if_eq}} {{/each}}  --}}
+                {{!-- </div> --}} {{!--
             <div class="col-4">
                 <br> {{#each vendor}} {{#if_eq this.type 'door'}}
                 <center>
@@ -105,7 +126,7 @@
 
 
 
-        </div>
+        {{!-- </div> --}}
         <div class="row">
             <div class="col-12">
                 <br>
