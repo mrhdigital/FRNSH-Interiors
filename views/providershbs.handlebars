@@ -20,123 +20,31 @@
         </div>
     </div>
 
-    <form method="POST" action="/package/create">
-        <div class="row">
-            <div class="card col-12">
+        {{!-- <div class="row">
+            <div>
                 <h1 class="text-center">Doors</h1>
             </div>
-        </div>
-        {{!--
-        <div class="card col-4" style="width: 18em;">
-            {{#each vendor}} {{#if_eq this.type 'door'}}
-            <img src="{{this.img}}" alt="{{this.img}}" class="caption">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <strong>{{this.name}}</strong>
-                </h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            {{/if_eq}} {{/each}}
         </div> --}}
-
-
+        
         <div class="row">
 
             {{#each products}}
                 {{#if this.image}}
-                    <div class="col-md-4 col-sm-12 text-center">
+                    <div class="col-md-4 col-sm-12 text-center" id="product-div">
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">${{this.price}}</h5>
                                 <p class="card-text">{{this.name}}</p>
-                                <div class="form-check form-check-inline">
-                                    <input type="button" data-name="{{this.name}}" class="btn-large btn-success">
-                                    <label class="form-check-label">click to choose this item</label>
-                                </div>
+                                {{!-- form to add the chosen item to the user's database/profile --}}
+                                <form>
+                                    <button class="item-btn" type="submit" data-id="{{this.id}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
                 {{/if}}
             {{/each}}
 
-
-            {{!--
-            <div class="col-4"> --}}
-                {{!-- <br> {{#each vendor}} {{#if_eq this.type 'door'}}
-                <div class="col-4">
-                    <center>
-                        <img src="{{this.img}}" alt="{{this.img}}" class="caption">
-                    </center>
-                    <h3 class="text-center">
-                        <strong>{{this.name}}</strong>
-                    </h3>
-                    <h4 class="text-center">{{this.description}}</h4>
-                    <h3 class="text-center">Price: ${{this.price}}</h3>
-                    <h4 class="text-center">{{this.capacity}}</h4>
-                    <div class="row">
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="door" value="{{this.id}}" class="form-check-input">
-                            <label class="form-check-label" for="inlineRadio1">click to choose this door</label>
-                        </div>
-                    </div>
-                </div>
-                {{/if_eq}} {{/each}}  --}}
-                {{!-- </div> --}} {{!--
-            <div class="col-4">
-                <br> {{#each vendor}} {{#if_eq this.type 'door'}}
-                <center>
-                    <img src="{{this.img}}" alt="{{this.img}}" class="caption">
-                </center>
-                <h3 class="text-center">
-                    <strong>{{this.name}}</strong>
-                </h3>
-                <h4 class="text-center">{{this.description}}</h4>
-                <h3 class="text-center">Price: ${{this.price}}</h3>
-                <h4 class="text-center">{{this.capacity}}</h4>
-                <div class="row">
-                    <div class="form-check form-check-inline">
-                        <input type="radio" name="door" value="{{this.id}}" class="form-check-input">
-                        <label class="form-check-label" for="inlineRadio1">click to choose this door</label>
-                    </div>
-                </div>
-
-                {{/if_eq}} {{/each}}
-            </div> --}} {{!--
-            <div class="col-4">
-                <br> {{#each vendor}} {{#if_eq this.type 'door'}}
-                <center>
-                    <img src="{{this.img}}" alt="{{this.img}}" class="caption">
-                </center>
-                <h3 class="text-center">
-                    <strong>{{this.name}}</strong>
-                </h3>
-                <h4 class="text-center">{{this.description}}</h4>
-                <h3 class="text-center">Price: ${{this.price}}</h3>
-                <h4 class="text-center">{{this.capacity}}</h4>
-                <div class="row">
-                    <div class="form-check form-check-inline">
-                        <input type="radio" name="door" value="{{this.id}}" class="form-check-input">
-                        <label class="form-check-label" for="inlineRadio1">click to choose this door</label>
-                    </div>
-                </div>
-                {{/if_eq}} {{/each}}
-            </div> --}}
-
-
-
-        {{!-- </div> --}}
-        <div class="row">
-            <div class="col-12">
-                <br>
-                <br>
-                <center>
-                    <button id="providerSubmit" type="submit" class="btn-secondary">Add to profile</button>
-                </center>
-                <br>
-                <br>
-            </div>
-        </div>
-    </form>
 </div>
