@@ -1,0 +1,63 @@
+<div style="padding-bottom: 100px">
+</div>
+<div class="container">
+    <div class="row" id="providers-row">
+        <div class="col-12">
+            <p>Display by budget:
+                <a href="/vendors/low">
+                    <button class="btn btn-light">Low</button>
+                </a>
+                <a href="/vendors/medium">
+                    <button class="btn btn-light">Medium</button>
+                </a>
+                <a href="/vendors/high">
+                    <button class="btn btn-light">High</button>
+                </a>
+                <a href="/vendors">
+                    <button class="btn btn-light">All</button>
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <form method="POST" action="/package/create">
+        <div class="row">
+            <div class="well col-12">
+                <h1 class="text-center">...</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4" id="item-div">
+                {{!--
+                <br> {{#each vendor}} {{#if_eq this.type 'door'}}
+                <center>
+                    <img src="{{this.img}}" alt="{{this.img}}" class="caption">
+                </center>
+                <h3 class="text-center">
+                    <strong>{{this.name}}</strong>
+                </h3>
+                <h4 class="text-center">{{this.description}}</h4>
+                <h3 class="text-center">Price: ${{this.price}}</h3>
+                <h4 class="text-center">{{this.capacity}}</h4>
+                <div class="row">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="door" value="{{this.id}}" class="form-check-input">
+                        <label class="form-check-label" for="inlineRadio1">click to choose this door</label>
+                    </div>
+                </div>
+                {{/if_eq}} {{/each}} --}}
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <br>
+                    <br>
+                    <center>
+                        <button id="providerSubmit" type="submit" class="btn-secondary">Add to profile</button>
+                    </center>
+                    <br>
+                    <br>
+                </div>
+            </div>
+    </form>
+    </div>
