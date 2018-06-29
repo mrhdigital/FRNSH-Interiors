@@ -71,5 +71,16 @@ module.exports = function (app) {
                 res.render("profile", hbsObject);
             });
     });
+
+    app.get("/categories", function (req, res) {
+        // console.log('something');
+        db.user.findAll({})
+            .then(function (results) {
+                var hbsObject = {
+                    user: results
+                };
+                res.render("categories", hbsObject);
+            });
+    });
 };
 

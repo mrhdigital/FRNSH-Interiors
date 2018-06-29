@@ -11,13 +11,13 @@ module.exports = function(app, passport) {
 
     // POST request for /signup -- goes to the passport local-signup
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile',
+        successRedirect: '/categories',
         failureRedirect: '/'
     }));
 
     // POST request for /signin -- goes to the passport local-signin
     app.post('/signin', passport.authenticate('local-signin', {
-        successRedirect: '/profile',
+        successRedirect: '/categories',
         failureRedirect: '/signin'
     }));
 

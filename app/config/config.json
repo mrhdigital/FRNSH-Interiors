@@ -1,18 +1,24 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "root",
     "database": "providers_db",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "host": "8889",
+    "dialect": "mysql",
+    "dialectOptions": {
+      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
+    }
     
   },
   "test": {
     "username": "root",
-    "password": "password",
+    "password": "root",
     "database": "providers_db",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "host": "8889",
+    "dialect": "mysql",
+    "dialectOptions": {
+      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
+    }
     
   },
   "production": {
