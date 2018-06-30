@@ -1,5 +1,5 @@
 var db = require("../models");
-
+//package necessary for the ebay api call
 var ebay = require("ebay-api");
 
 module.exports = function (app) {
@@ -14,7 +14,7 @@ module.exports = function (app) {
             // add additional fields
             outputSelector: ['PictureURLSuperSize'],
             paginationInput: {
-              entriesPerPage: 10
+              entriesPerPage: 20
             },
           };
 
@@ -31,17 +31,21 @@ module.exports = function (app) {
             //create variable for the response array
             var items = itemsResponse.searchResult.item;
             //create the empty array of objects to hold the api data
-            var item = {}
+            console.log(items);
+            // var item = {}
             var products = [];
             //loop through the api call results
             for (let i = 0; i < items.length; i++) {
+                let item = {};
+
+                item.id = items[i].itemId;
                 item.name = items[i].title;
                 item.image = items[i].pictureURLSuperSize;
                 item.price = items[i].sellingStatus.currentPrice.amount.toFixed(2);
                 //push results into objects array
                 products.push(item);
                 //clear the object for each loop
-                item = {};
+                // item = {};
             }  
             console.log(products);
             res.render("providershbs", {products: products});
