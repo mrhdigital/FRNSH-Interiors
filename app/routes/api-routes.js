@@ -5,7 +5,7 @@ var ebay = require("ebay-api");
 module.exports = function (app) {
 
     
-    
+
     // Run the request
     app.get("/vendors", function(req, res) {
 
