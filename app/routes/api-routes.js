@@ -10,7 +10,7 @@ module.exports = function (app) {
     app.get("/vendors", function(req, res) {
 
         var params = {
-            keywords: ["entry doors"],
+            keywords: ["Exterior Unfinished Modern Mahogany Doors"],
             // add additional fields
             outputSelector: ['PictureURLSuperSize'],
             paginationInput: {

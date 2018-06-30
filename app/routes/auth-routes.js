@@ -21,6 +21,18 @@ module.exports = function(app, passport) {
         failureRedirect: '/'
     }));
 
+// POST request for /signin -- goes to the passport local-signin
+// app.post('/signin', passport.authenticate('local-signin'),
+// function(req, res) {
+//     //successRedirect: '/categories',
+    
+//     res.redirect('/users/' + req.user.id);
+// });
+
+
+
+
+
     // Helper function to check if the user is pre-authenticated
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())
