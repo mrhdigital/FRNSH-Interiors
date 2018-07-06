@@ -1,16 +1,16 @@
 <div style="padding-bottom: 150px">
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <a href="http://localhost:8080/vendors">
+    <div class="row" id="category-row">
+        <div class="col-md-4 category" data-cat="Exterior Unfinished Modern Mahogany Doors">
+            <a href="#">
                 <img src="../assets/images/frontdoor.jpg" class="img-responsive" alt="doors" id="cat-doors">
                 <div class="overlay">
                     <div class="text">Doors</div>
                 </div>
             </a>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 category" data-cat="kitchen cabinets">
             <a href="#">
                 <img src="../assets/images/cabinets.jpg" class="img-responsive" alt="cabinets" id="cat-cabinets">
                 <div class="overlay">
@@ -18,7 +18,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 category" data-cat="wood flooring">
             <a href="#">
                 <img src="../assets/images/flooring.jpg" class="img-responsive" alt="flooring" id="cat-floors">
                 <div class="overlay">
@@ -28,3 +28,11 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $('#category-row').on('click', '.category', function() {
+        window.location.href = "/vendors/" + $(this).attr('data-cat');     
+    });
+
+</script>

@@ -1,0 +1,136 @@
+<div style ="padding-bottom: 150px"></div>
+
+<div class="container">
+
+    {{!-- bootstrap modal --}}
+    {{!-- TO DO -- MAKE THIS FUNCTIONAL WITH A DELAYED FORM SUBMISSION --}}
+    
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                {{!-- <h5 class="modal-title">Modal title</h5> --}}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Item removed from your package!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- TO DO -- bootstrap modal for ADDING - POST - package notes --}}
+    <div class="modal" id="package-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a note to your package:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <form action="/note/create" method="POST">
+                    <div class="form-group">
+                        {{!-- <input class="form-control" type="text" placeholder="Default input" name="body"> --}}
+                        <textarea class="form-control" rows="3" name="body" placeholder="add note here"></textarea>
+                    </div>
+                    <button type="submit">submit</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<!-- User package -->
+    <div class="row" id="packages-row">
+        {{#if username}}
+            <div class="col-12 text-center">
+                <h1>{{username}}'s Package</h1>
+                
+                <hr class="pb-4">
+            </div>
+        {{/if}}
+    </div>
+
+<!-- If no items have been added -->
+    {{#unless items}}
+        <div class="col-12">
+            <h3 class="text-center">It looks like you haven't created a package yet.</h3>
+            <p class="text-center">Head on over to <a href="/categories">our categories</a> to see our list of products available.</p>
+            <br>
+        </div>
+    {{/unless}}
+
+<!-- Display items in package -->
+    <div class="row package-items-div" style="visibility: hidden">
+
+    {{#each items}}
+    {{!-- {{log this}} --}}
+        {{#if this.image}}
+            <div class="col-md-4 col-sm-12 text-center pb-2 justify-content-center d-flex" id="product-div">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">${{this.price}}</h5>
+                        <p class="card-text p-2">{{this.name}}</p>
+                            <form id="remove-package" action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
+                                <button type="submit" class="btn-danger btn-delete">Delete Item</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+    {{/each}}
+
+    </div>
+
+    {{!-- TO DO -- for posting and updating notes about the package --}}
+    
+    {{!-- <div class="row pt-5 justify-content-center">
+        <div class="col-10 text-center">
+                <h3>Notes about this package:</h3>
+                <hr>
+            {{#if notes}}
+                <p>{{notes}}</p>
+                <button id="edit-note">edit note</button>
+            {{/if}}
+            {{#unless notes}}
+                <button id="add-note">add note</button>
+            {{/unless}}
+        </div>
+    </div> --}}
+
+<!-- Requiring logic entered in package-routes.js -->
+    <div class="row pt-5">
+        <div class="col-12 text-center">
+            <h2>TOTAL PACKAGE: ${{price}}</h2>
+            {{#if items}}
+            <button id="btn-edit-package" class="p-2 m-3">Edit Package</button>
+            {{/if}}
+        </div>
+    </div>
+
+    
+
+</div>
+
+<script>
+
+    $(document).ready(function() {
+        $('.package-items-div').css('visibility','visible').hide().fadeIn('slow');
+
+        $('.btn-delete').hide();
+
+        $('#btn-edit-package').click(function(){
+            $('.btn-delete').slideToggle();
+        });
+
+    });
+
+</script>

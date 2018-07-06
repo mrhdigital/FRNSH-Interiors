@@ -1,25 +1,18 @@
   //load bcrypt - required for password encryption
   var bCrypt = require('bcrypt-nodejs');
-  var emailutils = require('../../util/email.js');
+  var db = require("../../models");
+//   var emailutils = require('../../util/email.js');
   
   module.exports = function(passport, user) {
-      var User = user;
+      // var User = user;
       var LocalStrategy = require('passport-local').Strategy;
 
-      // used to serialize the user
       passport.serializeUser(function(user, done) {
-          done(null, user.id);
+        done(null, user);
       });
-
-      // used to deserialize the user
-      passport.deserializeUser(function(id, done) {
-          User.findById(id).then(function(user) {
-              if (user) {
-                  done(null, user.get());
-              } else {
-                  done(user.errors, null);
-              }
-          });
+      
+      passport.deserializeUser(function(user, done) {
+        done(null, user);
       });
 
       passport.use('local-signup', new LocalStrategy({
@@ -33,7 +26,7 @@
                   return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
               };
 
-              User.findOne({ where: { email: email } }).then(function(user) {
+              db.User.findOne({ where: { email: email } }).then(function(user) {
                   if (user) {
                       console.log("That email is already taken");
                       return done(null, false, { message: 'That email is already taken' });
@@ -46,17 +39,18 @@
                           lastname: req.body.lastname
                       };
 
-                      User.create(data).then(function(newUser, created) {
+                      db.User.create(data).then(function(newUser, created) {
                           if (!newUser) {
                             console.log("Not a new user");
                             return done(null, false);
                           }
                           if (newUser) {
                             console.log("Created a new user");
+                            return done(null, true);
 
                             // Send registration confirmation email to the user
-                            emailutils.email(req.body.firstname,req.body.lastname, email);
-                            return done(null, newUser);
+                            // emailutils.email(req.body.firstname,req.body.lastname, email);
+                            // return done(null, newUser);
                           }
                       });
                   }
@@ -74,11 +68,11 @@
           },
 
           function(req, email, password, done) {
-              var User = user;
+              // var User = user;
               var isValidPassword = function(userpass, password) {
                   return bCrypt.compareSync(password, userpass);
               }
-              User.findOne({ where: { email: email } }).then(function(user) {
+              db.User.findOne({ where: { email: email } }).then(function(user) {
                   if (!user) {
                       return done(null, false, { message: 'Email does not exist' });
                   }

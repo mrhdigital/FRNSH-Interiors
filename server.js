@@ -6,6 +6,9 @@ var express = require("express"),
     handlebars = require('handlebars'),
     passport = require('passport'),
     session = require('express-session'),
+    flash = require('express-flash-notification'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
     PORT = process.env.PORT || 8080;
 
 var db = require("./app/models");
@@ -28,6 +31,8 @@ app.use("/public", express.static("./app/public"));
  app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); 
  app.use(passport.initialize());
  app.use(passport.session());
+ app.use(cookieParser());
+ app.use(flash());
 
  var models = require("./app/models");
 
@@ -35,30 +40,9 @@ app.use("/public", express.static("./app/public"));
 require("./app/routes/auth-routes.js")(app, passport);
 require("./app/config/passport/passport.js")(passport, models.user);
 require("./app/routes/api-routes.js")(app);
-require("./app/routes/html-routes.js")(app);
-require("./app/routes/package-routes.js")(app);
-require("./app/routes/service-routes.js")(app);
-
-
-// app.use("/vendors", apiRoutes);
-
-handlebars.registerHelper('if_eq', function(a, b, opts) {
-    if(a == b)
-        return opts.fn(this);
-    else
-        return opts.inverse(this);
-});
-
-handlebars.registerHelper('if_ls', function(a, b, opts) {
-   if(a < b)
-       return opts.fn(this);
-   else
-       return opts.inverse(this);
-});
-
-handlebars.registerHelper("capitalizeString", function (string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-})
+require("./app/routes/item-routes.js")(app);
+// TO DO  -- make this route functional
+// require("./app/routes/note-routes.js")(app);
 
 //Sync models with the database and start the Express app
 db.sequelize.sync({force: false}).then(function(){

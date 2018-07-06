@@ -1,17 +1,6 @@
-/* -------------------------------- 
-
-Primary style
-
--------------------------------- */
-*, *::after, *::before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
   html {
     font-size: 62.5%;
-    color: #66c9dd;
+    color: #fff;
   }
   
   body {
@@ -27,45 +16,6 @@ Primary style
   
   img {
     max-width: 100%;
-  }
-  
-  
-  .header h2 {
-    font-family: Cookie;
-    font-size: 54px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 300;
-    line-height: 26.4px;
-    padding-top: 80px;
-    color: #66c9dd;
-  }
-  
-  input[type="submit"] {
-     display: block;
-     background: #66c9dd;
-     color: #fff;
-     border: none;
-     padding: 10px 20px;
-     -moz-border-radius: 2px;
-     border-radius: 2px;
-     cursor: pointer;
-   }
-  
-  /* -------------------------------- 
-  
-  Javascript disabled
-  
-  -------------------------------- */
-  .no-js .cd-hero-slider li {
-    display: none;
-  }
-  .no-js .cd-hero-slider li.selected {
-    display: block;
-  }
-  
-  .no-js .cd-slider-nav {
-    display: none;
   }
   
   .thumbnail {
@@ -179,9 +129,6 @@ Primary style
   }
 
   footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
     padding: 25px 0;
     text-align: center;

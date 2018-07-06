@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-        crossorigin="anonymous">
+    crossorigin="anonymous">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+    crossorigin="anonymous">
     <link rel="stylesheet" href="../css/hbsstyle.css">
+    {{!-- jsPDF --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+    {{!-- jquery --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <title>Choose Your Products</title>
 
@@ -20,7 +24,7 @@
     <!-- Nav bar -->
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger">
                 <img src="../assets/images/logo.png" width="64px" alt="logo">
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -51,7 +55,7 @@
     <!-- Footer -->
     <br>
     <br>
-    <footer>
+<footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -60,18 +64,21 @@
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-twitter"></i>
+                            <h6 class="text-center text-light">Nik</h6>
+                            <a href="https://github.com/nikolas-haug" target="blank">
+                                <i class="fab fa-github"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-facebook"></i>
+                            <h6 class="text-center text-light">Mirza</h6>
+                            <a href="https://github.com/mrhdigital" target="blank">
+                                <i class="fab fa-github"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-linkedin"></i>
+                            <h6 class="text-center text-light">Barbey</h6>
+                            <a href="https://github.com/barbeyng" target="blank">
+                                <i class="fab fa-github"></i>
                             </a>
                         </li>
                     </ul>
@@ -91,13 +98,12 @@
     </footer>
 
     <!-- jQuery, JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    crossorigin="anonymous"></script>
+    
 </body>
 
 </html>

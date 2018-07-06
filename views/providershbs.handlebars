@@ -1,46 +1,30 @@
 <div style="padding-bottom: 100px">
 </div>
 <div class="container">
-    <div class="row" id="providers-row">
-        <div class="col-12">
-            <p>Display by budget:
-                <a href="/vendors/low">
-                    <button class="btn btn-light">Low</button>
-                </a>
-                <a href="/vendors/medium">
-                    <button class="btn btn-light">Medium</button>
-                </a>
-                <a href="/vendors/high">
-                    <button class="btn btn-light">High</button>
-                </a>
-                <a href="/vendors">
-                    <button class="btn btn-light">All</button>
-                </a>
-            </p>
+
+    <!-- container for alert -->
+    <div class="container py-3" id="alerts-container">
+        <div class="alert alert-warning alert-dismissible mb-0" style="display: none" role="alert">
+            <strong>Item selected!</strong> - find it in your <a href="/package" class="alert-link">package</a>
+            <button type="button" class="close" aria-label="Close" id="alert-btn" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     </div>
-
-        {{!-- <div class="row">
-            <div>
-                <h1 class="text-center">Doors</h1>
-            </div>
-        </div> --}}
         
-        <div class="row">
+        <div class="row products-div" style="visibility: hidden">
 
             {{#each products}}
                 {{#if this.image}}
-                    <div class="col-md-4 col-sm-12 text-center" id="product-div">
+                    <div class="col-md-4 col-sm-12 text-center d-flex justify-content-center py-2" id="product-div">
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
                             <div class="card-body">
-                                {{!-- <h5 class="card-title">${{this.price}}</h5> --}}
+                                <h5 class="card-title">${{this.price}}</h5>
                                 <p class="card-text">{{this.name}}</p>
-                                {{!-- form to add the chosen item to the user's database/profile --}}
-                                <form>
-                                    <button class="item-btn" type="submit" data-id="{{this.id}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button>
-                                </form>
-
+                               
+                                    <button class="item-btn" type="submit" data-id="{{this.categoryId}}" data-name="{{this.name}}" data-image="{{this.image}}" data-price="{{this.price}}">choose item</button>
+                        
                             </div>
                         </div>
                     </div>
@@ -48,3 +32,37 @@
             {{/each}}
 
 </div>
+
+<script>
+
+    $(document).ready(function() {
+         $('.products-div').css('visibility','visible').hide().fadeIn('slow');
+
+        $('.item-btn').on('click', function() {
+            
+            var btnVals = { 
+                    categoryId: $(this).attr('data-id'),
+                    name: $(this).attr('data-name'),
+                    image: $(this).attr('data-image'),
+                    price: $(this).attr('data-price')
+                };
+
+            $.ajax({
+                type: 'POST',
+                url: "/item/create",
+                data: btnVals,
+                dataType: "text",
+                success: function(resultData) { 
+        
+                    $('.alert').show();
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    
+                }
+            }); 
+        });
+    });
+    
+
+    
+
+</script>
