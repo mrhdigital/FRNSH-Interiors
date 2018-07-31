@@ -1,0 +1,39 @@
+<div style="padding-bottom: 150px">
+</div>
+<div class="container">
+    <div class="row" id="category-row">
+        <div class="col-12 text-center">
+            <h1>Congratulations! You have successfully signed up.</h1>
+            <br>
+            <h3>Please click
+                <a href="/">here</a> to return to the homepage or you will be redirected in
+                <span id="countdown">10</span> seconds. </h3>
+            <br>
+            <h3>Please sign in to begin building your package!</h3>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 10 sec timer runs as soon as page loads
+    $(document).ready(function () {
+        window.setTimeout(function () {
+            location.href = "/";
+        }, 10008);
+    });
+
+    // Countdown timer 
+    var timeLeft = 10;
+    var elem = document.getElementById('countdown');
+    var timerId = setInterval(countdown, 1000);
+
+    function countdown() {
+        if (timeLeft == -1) {
+            clearTimeout(timerId);
+        } else {
+            elem.innerHTML = timeLeft;
+            timeLeft--;
+        }
+    }
+
+</script>

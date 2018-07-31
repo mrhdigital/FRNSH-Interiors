@@ -8,7 +8,7 @@ module.exports = function (app) {
 
         db.Note.create({
             body: req.body.body,
-            UserId: req.user.firstname
+            UserId: req.user.id
         })
         .then(function (result) {
             // console.log(result);
@@ -25,5 +25,15 @@ module.exports = function (app) {
             }).then(function(results) {
                 res.redirect("/package");
             });
+    });
+
+    app.delete("/note/delete/:id", function(req, res) {
+        db.Note.destroy({
+            where: {
+                UserId: req.params.id
+            }
+        }).then(function(results) {
+            res.redirect("/package");
+        });
     });
 }

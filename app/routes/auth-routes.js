@@ -9,9 +9,13 @@ module.exports = function(app, passport) {
     // GET request for /logout -- goes to the authcontroller
     app.get('/logout', authController.logout);
 
+    app.get('/signup', function(req, res) {
+        res.render('signup');
+    })
+
     // POST request for /signup -- goes to the passport local-signup
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/categories',
+        successRedirect: '/signup',
         failureRedirect: '/'
     }));
 

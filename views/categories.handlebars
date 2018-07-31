@@ -1,10 +1,11 @@
 <div style="padding-bottom: 150px">
 </div>
 <div class="container">
+
     <div class="row" id="category-row">
         <div class="col-md-4 category" data-cat="Exterior Unfinished Modern Mahogany Doors">
             <a href="#">
-                <img src="../assets/images/frontdoor.jpg" class="img-responsive" alt="doors" id="cat-doors">
+                <img src="../assets/images/frontdoor.jpg" class="img-responsive" alt="Front Door" id="cat-doors">
                 <div class="overlay">
                     <div class="text">Doors</div>
                 </div>
@@ -12,7 +13,7 @@
         </div>
         <div class="col-md-4 category" data-cat="kitchen cabinets">
             <a href="#">
-                <img src="../assets/images/cabinets.jpg" class="img-responsive" alt="cabinets" id="cat-cabinets">
+                <img src="../assets/images/cabinets.jpg" class="img-responsive" alt="Kitchen Cabinets; Credit: Toa Heftiba" id="cat-cabinets">
                 <div class="overlay">
                     <div class="text">Cabinets</div>
                 </div>
@@ -20,13 +21,29 @@
         </div>
         <div class="col-md-4 category" data-cat="wood flooring">
             <a href="#">
-                <img src="../assets/images/flooring.jpg" class="img-responsive" alt="flooring" id="cat-floors">
+                <img src="../assets/images/flooring.jpg" class="img-responsive" alt="Wooden Flooring" id="cat-floors">
                 <div class="overlay">
                     <div class="text">Flooring</div>
                 </div>
             </a>
         </div>
     </div>
+
+    {{!-- for the custom search --}}
+    {{!-- <div class="row justify-content-center">
+        <div class="col-md-4">
+            <input type="text" id="custom-search-vals">
+            <button id="custom-search">Search</button>
+        </div>
+    </div> --}}
+
+    {{!-- TO DO -- ADD CUSTOM SEARCH TO CATEGORIES PAGE --}}
+
+    {{!-- $('#custom-search').on('click', function() {   --}}
+        {{!-- params = $('#custom-search-vals').val().trim();
+        window.location.href = "/vendors/" + params;    
+    }); --}}
+
 </div>
 
 <script>

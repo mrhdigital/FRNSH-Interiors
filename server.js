@@ -42,7 +42,7 @@ require("./app/config/passport/passport.js")(passport, models.user);
 require("./app/routes/api-routes.js")(app);
 require("./app/routes/item-routes.js")(app);
 // TO DO  -- make this route functional
-// require("./app/routes/note-routes.js")(app);
+require("./app/routes/note-routes.js")(app);
 
 //Sync models with the database and start the Express app
 db.sequelize.sync({force: false}).then(function(){

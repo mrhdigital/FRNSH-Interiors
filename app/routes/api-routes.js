@@ -65,7 +65,7 @@ module.exports = function (app) {
             var userNote;
             for(var i = 0; i < results.length; i++) {
                 if(results[i].price) {
-                    price += parseInt(results[i].price);
+                    price += parseFloat(results[i].price);
                 }
                 if(results[i].User.firstname) {
                     username = results[0].User.firstname;
@@ -80,6 +80,16 @@ module.exports = function (app) {
                 username: username
             };
             res.render("package", hbsObject);
+        });
+    });
+
+    app.get("/package/note", function(req, res) {
+        db.Note.findAll({
+            where: {
+                UserId: req.user.id
+            },
+        }).then(function(results) {
+            res.json(results);
         });
     });
 

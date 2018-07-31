@@ -6,13 +6,19 @@ module.exports = function(sequelize, Sequelize) {
         username: { type: Sequelize.TEXT },
         about: { type: Sequelize.TEXT },
         email: { type: Sequelize.STRING },
-        password: { type: Sequelize.STRING, allowNull: false },
+        password: { type: Sequelize.STRING, allowNull: true },
         last_login: { type: Sequelize.DATE },
         status: { type: Sequelize.ENUM('active', 'inactive'), defaultValue: 'active' }
     });
 
     User.associate = function(models) {
         User.hasMany(models.Item, {
+            onDelete: "cascade"
+        });
+    }
+
+    User.associate = function(models) {
+        User.hasMany(models.Note, {
             onDelete: "cascade"
         });
     }

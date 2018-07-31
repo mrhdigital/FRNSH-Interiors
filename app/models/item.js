@@ -1,7 +1,7 @@
 module.exports = function(sequelize, Sequelize) {
     var Item = sequelize.define('Item', {
         id: { autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER },
-        categoryId: {type: Sequelize.BIGINT(20), notEmpty: true},
+        categoryId: {type: Sequelize.INTEGER, notEmpty: true},
         name: { type: Sequelize.STRING, notEmpty: true },
         image: { type: Sequelize.STRING, notEmpty: true },
         price: { type: Sequelize.DECIMAL(10,2) },

@@ -1,11 +1,9 @@
 <div style ="padding-bottom: 150px"></div>
 
-<div class="container">
+<div class="container" id="pdf-container"> 
 
-    {{!-- bootstrap modal --}}
-    {{!-- TO DO -- MAKE THIS FUNCTIONAL WITH A DELAYED FORM SUBMISSION --}}
-    
-    <div class="modal" tabindex="-1" role="dialog">
+    {{!-- bootstrap modal for item delete--}}
+    <div class="modal item-delete-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -15,38 +13,73 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Item removed from your package!</p>
+                <p>Remove from package?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {{!-- confirm delete button --}}
+                <button id="confirm-delete" class="btn btn-warning">confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
             </div>
             </div>
         </div>
     </div>
 
-    {{!-- TO DO -- bootstrap modal for ADDING - POST - package notes --}}
-    <div class="modal" id="package-modal" tabindex="-1" role="dialog">
+    {{!--  bootstrap modal for ADDING - POST - package notes --}}
+    <div class="modal package-notes-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+            <div class="modal-header">
+                {{!-- <h5 class="modal-title">Modal title</h5> --}}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/note/create" method="POST">
+                    <div class="form-group">
+                        <label for="notes">Notes:</label>
+                        <textarea class="form-control" rows="5" id="notes" name="body"></textarea>
+                        
+                    </div>
+                
+            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-lg btn-primary" id="create-note">submit</button>
+                        <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!--  bootstrap modal for UPDATING - PUT - package notes --}}
+        <div class="modal edit-package-notes-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add a note to your package:</h5>
+                    {{!-- <h5 class="modal-title">Modal title</h5> --}}
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <div class="modal-body">
-                <form action="/note/create" method="POST">
-                    <div class="form-group">
-                        {{!-- <input class="form-control" type="text" placeholder="Default input" name="body"> --}}
-                        <textarea class="form-control" rows="3" name="body" placeholder="add note here"></textarea>
-                    </div>
-                    <button type="submit">submit</button>
-                </form>
-            </div>
+                <div class="modal-body">
+                    <form action="/note/edit?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label for="notes">Edit notes:</label>
+                            <textarea class="form-control" rows="5" id="edit-notes" name="body">
+                                {{!-- generate the text from the db here --}}
+                            </textarea>
+                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-lg btn-primary" id="edit-note">submit</button>
+                            <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                     </form>
+                </div>
             </div>
         </div>
-    </div>
-
+    
 <!-- User package -->
     <div class="row" id="packages-row">
         {{#if username}}
@@ -79,8 +112,8 @@
                     <div class="card-body">
                         <h5 class="card-title">${{this.price}}</h5>
                         <p class="card-text p-2">{{this.name}}</p>
-                            <form id="remove-package" action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
-                                <button type="submit" class="btn-danger btn-delete">Delete Item</button>
+                            <form class="remove-package" action="/package/delete/{{this.id}}?_method=DELETE" method="POST">
+                                <button class="btn-danger item-delete-btn">Delete Item</button>
                             </form>
                     </div>
                 </div>
@@ -90,23 +123,19 @@
 
     </div>
 
-    {{!-- TO DO -- for posting and updating notes about the package --}}
-    
-    {{!-- <div class="row pt-5 justify-content-center">
+    {{!-- for posting and updating notes about the package --}}
+    {{#if items}}
+    <div class="row pt-5 justify-content-center">
         <div class="col-10 text-center">
-                <h3>Notes about this package:</h3>
-                <hr>
-            {{#if notes}}
-                <p>{{notes}}</p>
-                <button id="edit-note">edit note</button>
-            {{/if}}
-            {{#unless notes}}
-                <button id="add-note">add note</button>
-            {{/unless}}
+            <h3>Notes about this package:</h3>
+            <hr>
+            <div id="package-notes">
+                {{!-- generate notes and buttons here --}}
+            </div>
         </div>
-    </div> --}}
+    </div>
+    {{/if}}
 
-<!-- Requiring logic entered in package-routes.js -->
     <div class="row pt-5">
         <div class="col-12 text-center">
             <h2>TOTAL PACKAGE: ${{price}}</h2>
@@ -116,21 +145,117 @@
         </div>
     </div>
 
-    
+    {{!-- BUTTON AND LOGIC FOR GENERATING jsPDFs -- TO DO --}}
+
+    {{!-- <button id="gen-pdf">get PDF</button> --}}
+
+    {{!-- function genPDF() {
+            html2canvas(document.getElementById("pdf-container"), {
+                onrendered: function(canvas) {
+                    var img = canvas.toDataURL("image/png");
+                    var doc = new jsPDF();
+                    doc.addImage(img, "JPEG", 0, 0);
+                    doc.save("test.pdf");
+                }
+            });
+        }
+           $('#gen-pdf').on('click', genPDF);
+     --}}
 
 </div>
 
 <script>
 
     $(document).ready(function() {
+
         $('.package-items-div').css('visibility','visible').hide().fadeIn('slow');
 
-        $('.btn-delete').hide();
+        // hide the edit package buttons
+        $('.item-delete-btn').hide();
 
         $('#btn-edit-package').click(function(){
-            $('.btn-delete').slideToggle();
+
+            $(this).text(function(i, v){
+               return v === 'Edit Package' ? 'cancel' : 'Edit Package'
+            });
+            
+            $('.item-delete-btn, #delete-note-form, #edit-note-btn').slideToggle();
         });
 
-    });
+        $('.item-delete-btn').on('click', function() {
+
+            // specify the form here
+            $('.remove-package').submit( function(event) {
+                var formId = this.id,
+                    form = this;
+
+                $('.item-delete-modal').modal('show');
+
+                event.preventDefault();
+
+                //to confirm the button click
+                $('#confirm-delete').on('click', function() {
+                    form.submit();
+                });
+
+                // to stop the form submission after modal dismiss
+                $('.item-delete-modal').on('hidden.bs.modal', function() {
+                    $('form').off();
+                });
+
+            }); 
+        });
+
+        // ajax call for the note data
+        $.ajax({
+            method: "GET",
+            url: "/package/note"
+        }).then(function(results) {
+            console.log("============================");
+            console.log(results);
+            if(results.length === 0) {
+                var addNoteButton = $('<button id="add-note-btn">').text('add note');
+                $('#package-notes').append(addNoteButton);
+            } else {
+                var noteText = results[0].body;
+                var packageNote = $('<p>').text(noteText);
+                var editNoteButton = $('<button id="edit-note-btn" class="btn btn-warning p-2 m-1">').text('edit note').hide();
+                // make the form for the DELETE route
+                var form = 
+                    $('<form>', {
+                        'id': 'delete-note-form',
+                        'method': 'POST',
+                        'action': "/note/delete/" + results[0].UserId + "?_method=DELETE"
+                    });
+
+                var deleteNoteButton = $('<button type="submit" id="delete-note-btn" class="btn btn-danger p-2 m-1">').text('delete note');
+                
+                form.append(deleteNoteButton).hide();
+
+                $('#package-notes').append(packageNote);
+                $('#package-notes').append(editNoteButton);
+                $('#package-notes').append(form);
+            }
+        });
+
+        // for the POST request - package notes
+        $('#package-notes').on('click', '#add-note-btn', function() {
+            $('.package-notes-modal').modal('show');
+        });
+        // for the PUT request - package notes
+        $('#package-notes').on('click', '#edit-note-btn', function() {
+            $('.edit-package-notes-modal').modal('show');
+
+            $.ajax({
+                method: "GET",
+                url: "/package/note"
+            }).then(function(results) {
+                var existingNote = results[0].body;
+                console.log("existing note: " + existingNote);
+                $('#edit-notes').val(existingNote);
+            });
+        });
+
+        });
 
 </script>
