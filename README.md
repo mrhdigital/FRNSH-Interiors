@@ -8,7 +8,7 @@ This app helps the user to make better decision and increase the customer engage
 
 ### link to project:
 
-<https://vast-crag-94602.herokuapp.com>
+<https://frnsh-interiors.herokuapp.com/>
 
 ## Technologies used:
 
